@@ -1,0 +1,20 @@
+{
+  "name": "simpleweatherapp-dynamic",
+  "version": "1.0.0",
+  "description": "simple weather App with webiste",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msmith710/simpleWeatherApp-Dynamic.git"
+  },
+  "author": "M.S.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msmith710/simpleWeatherApp-Dynamic/issues"
+  },
+  "homepage": "https://github.com/msmith710/simpleWeatherApp-Dynamic#readme"
+}
