@@ -1,11 +1,41 @@
+//api variables
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const request = require('request');
+
+//api key
+const apiKey = '716fc6fe1035aedc0f24128aef2c3f9d';
+
+
+//api-module initialization
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
-//localhost test & app code [6/18/2019]
+//app functionality
 app.get('/', function (req, res) {
   res.render('index')
+});
+
+app.post('/', function (req, res) {
+  let city = req.body.city;
+  let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
+
+  request(url, function (err, response, body) {
+    if(err){
+      res.render('index', {weather: null, error: "Error, please try again."});
+    } else {
+      let weather = JSON.parse(body);
+
+      if (weather.main == undefined) {
+        res.render ('index', {weather:null, error:'Error, please try again.'});
+      } else {
+        let weathertText = `It's ${weather.main.temp} degrees F° in ${weather.name}!`;
+        res.render('index', {weather: weathertText, error:null});
+      }
+    }
+  })
 });
 
 app.listen(3000, function () {
